@@ -51,22 +51,53 @@
   
 
   <style>
-  .codigo-doc {
-    text-align: right;
-    font-weight: bold;
-    color: #002b5c;
-    margin-top: 20px;
+  .overlay {
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
   }
-  @media print {
-    .codigo-doc {
-      display: block !important;
-      page-break-inside: avoid;
-    }
+  .login-box {
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    width:320px;
+    text-align:center;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+  }
+  .login-box input {
+    width:90%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+  }
+  .login-box button {
+    margin-top:12px;
+    padding:10px 20px;
+    background:#004080;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
   }
   </style>
-  
+
 </head>
 <body>
+<div id="loginOverlay" class="overlay">
+  <div class="login-box">
+    <h2>Acceso Cotizador</h2>
+    <input type="text" id="loginUser" placeholder="Usuario">
+    <input type="password" id="loginPass" placeholder="Contraseña">
+    <button onclick="doLogin()">Ingresar</button>
+    <p id="loginError" style="color:red;display:none;">Credenciales incorrectas</p>
+  </div>
+</div>
+
   <main id="cotizador">
     <header class="header">
       <div class="logo-wrap">
@@ -205,20 +236,9 @@
       </section>
       <button id="btnPDF">Descargar PDF</button>
     </section>
-  
-
-
-
-<div id="codigoDocumento" class="codigo-doc">
-  NOG-KAM-FOR-01
-</div>
-
-</main>
+  </main>
 
   <script src="app.js"></script>
-
-
-    
-    
+<div class="footer-code">NOG-KAM-FOR-01</div>
 </body>
 </html>

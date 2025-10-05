@@ -181,8 +181,6 @@ function setupPDF(){
         // Asegurar que el bloque de fechas para PDF esté visible
         const f = doc.querySelector('.fechas-pdf');
         if (f) f.style.display = 'block';
-        const codigo = doc.querySelector('#codigoDocumento');
-        if (codigo) codigo.style.display = 'block';
       }
     });
     const img = canvas.toDataURL('image/png');
@@ -284,3 +282,31 @@ function updateFechasPDF() {
   }
 });
 document.addEventListener("DOMContentLoaded", updateFechasPDF);
+
+
+
+// === Login flotante ===
+function doLogin() {
+  const user = document.getElementById("loginUser").value;
+  const pass = document.getElementById("loginPass").value;
+
+  // Lista de usuarios válidos
+  const users = {
+    "admin": "1234",
+    "sanare": "5678",
+    "ventas": "abcd",
+    "kam1": "kam123",
+    "kam2": "kam456"
+  };
+
+  if (users[user] && users[user] === pass) {
+    document.getElementById("loginOverlay").style.display = "none";
+  } else {
+    document.getElementById("loginError").style.display = "block";
+  }
+}
+
+// Revisar sesión al cargar
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("loginOverlay"); if (overlay) overlay.style.display = "flex";
+});
